@@ -18,34 +18,17 @@ export default {
   data() {
     return {
       timeline: null,
-      animations: [
-        {
-          duration: 0.8,
-          opacity: 0,
-          scaleX: '0%',
-          transformOrigin: '50% -100%',
-          ease: 'Power2.easeOut',
-          stagger: 0.15,
-        },
-      ],
       chars: null,
     }
   },
   mounted() {
     this.gsapInit()
-    this.observerInit()
+    this.$app.$on('animate::logo', this.animateText)
   },
   beforeDestroy() {
-    this.observerDestroy()
+    this.$app.$off('animate::logo', this.animateText)
   },
   methods: {
-    observerInit() {
-      this.observer = new IntersectionObserver(this.onObserverChange)
-      this.observer.observe(this.$refs.text)
-    },
-    observerDestroy() {
-      this.observer.unobserve(this.$refs.text)
-    },
     gsapInit() {
       // create gsap timeline
       this.timeline = gsap.timeline()
@@ -55,17 +38,19 @@ export default {
       this.chars.forEach((el, index) => {
         el.setAttribute('data-index', index)
       })
-    },
-    onObserverChange(entry, observer) {
-      if (entry[0].isIntersecting) {
-        this.animateText()
-        this.observer.unobserve(this.$refs.text)
-      }
+      this.isHidden = false
     },
     animateText(animationIndex) {
-      const index = animationIndex || 0
-
-      this.timeline.from(this.chars, this.animations[index])
+      this.timeline.to(this.chars, {
+        duration: 0.8,
+        opacity: 1,
+        stagger: 0.15,
+        onStart: () => {
+          setTimeout(() => {
+            this.$app.$emit('animate::bio')
+          }, 500)
+        },
+      })
     },
     reanimate(ev) {
       // which character is clicked? start there
@@ -193,6 +178,7 @@ $char-height: 23vw;
   .char {
     position: absolute;
     height: $char-height;
+    opacity: 0;
 
     &[data-index='0'] {
       left: 0;

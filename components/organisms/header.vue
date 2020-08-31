@@ -1,5 +1,5 @@
 <template>
-  <nav class="links">
+  <nav class="links is-hidden" ref="links">
     <ul>
       <li class="ts1">
         <a href="mailto:jordan@egstad.com" target="_blank" class="button"
@@ -46,6 +46,12 @@
   top: $space;
   left: $space;
   display: flex;
+  transition: opacity 400ms ease-out;
+  opacity: 1;
+
+  &.is-hidden {
+    opacity: 0;
+  }
 }
 
 .button {
@@ -93,3 +99,19 @@ ul {
   }
 }
 </style>
+
+<script>
+export default {
+  mounted() {
+    this.$app.$on('animate::links', this.showDetails)
+  },
+  beforeDestroy() {
+    this.$app.$off('animate::links', this.showDetails)
+  },
+  methods: {
+    showDetails() {
+      this.$refs.links.classList.remove('is-hidden')
+    },
+  },
+}
+</script>

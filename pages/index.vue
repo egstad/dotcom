@@ -53,5 +53,10 @@ export default {
     Details,
     Links,
   },
+  mounted() {
+    setTimeout(() => {
+      this.$app.$emit('animate::logo')
+    }, 500)
+  },
 }
 </script>

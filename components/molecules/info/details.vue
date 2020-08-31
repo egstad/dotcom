@@ -1,5 +1,5 @@
 <template>
-  <div class="grid">
+  <div class="grid is-hidden" ref="details">
     <p class="ts1">
       My many-sided practice is informed by a decade of brand design and product
       development. I’ve served plumbers, political organizations, restaurants,
@@ -20,6 +20,12 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: $space;
+  transition: opacity 400ms ease-out;
+  opacity: 1;
+
+  &.is-hidden {
+    opacity: 0;
+  }
 
   @media (min-width: $vp-md) {
     grid-template-columns: repeat(3, 1fr);
@@ -30,3 +36,19 @@
   }
 }
 </style>
+
+<script>
+export default {
+  mounted() {
+    this.$app.$on('animate::details', this.showDetails)
+  },
+  beforeDestroy() {
+    this.$app.$off('animate::details', this.showDetails)
+  },
+  methods: {
+    showDetails() {
+      this.$refs.details.classList.remove('is-hidden')
+    },
+  },
+}
+</script>

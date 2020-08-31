@@ -18,7 +18,15 @@
 @font-face {
   src: url("~static/fonts/egmetaphor.ttf");
   font-family: "EG-Metaphor";
-  font-display: swap;
+  font-display: block;
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  src: url("~static/fonts/egtimes.otf");
+  font-family: "EG-Times";
+  font-display: block;
   font-weight: normal;
   font-style: normal;
 }

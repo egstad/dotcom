@@ -1,5 +1,5 @@
 <template>
-  <h2 ref="text" class="para js-animate animate">{{ text }}</h2>
+  <h2 ref="text" class="para is-hidden">{{ text }}</h2>
 </template>
 
 <script>
@@ -19,31 +19,25 @@ export default {
     }
   },
   mounted() {
-    this.timeline = gsap.timeline()
-    this.splitText = new SplitText(this.$refs.text, {
-      type: 'lines',
-      linesClass: 'line-child',
-    })
-    this.splitWrap = new SplitText(this.$refs.text, {
-      type: 'lines',
-      linesClass: 'line-parent hidden',
-    })
-    this.lines = this.splitText.lines
-    // watch if in view
-    this.observer = new IntersectionObserver(this.onObserverChange)
-    this.observer.observe(this.$refs.text)
-  },
-  beforeDestroy() {
-    this.observer.unobserve(this.$refs.text)
+    this.initGSAP()
+    this.$app.$on('animate::bio', this.animateText)
   },
   methods: {
-    onObserverChange(entry, observer) {
-      if (entry[0].isIntersecting) {
-        this.animateText()
-        this.observer.unobserve(this.$refs.text)
-      }
+    initGSAP() {
+      this.timeline = gsap.timeline()
+      this.splitText = new SplitText(this.$refs.text, {
+        type: 'lines',
+        linesClass: 'line-child',
+      })
+      this.splitWrap = new SplitText(this.$refs.text, {
+        type: 'lines',
+        linesClass: 'line-parent hidden',
+      })
+      this.lines = this.splitText.lines
     },
     animateText() {
+      this.$refs.text.classList.remove('is-hidden')
+
       this.timeline.from(
         '.line-child',
         {
@@ -52,10 +46,19 @@ export default {
           y: '100%',
           ease: 'Power2.easeOut',
           stagger: 0.15,
+          onStart: () => {
+            setTimeout(() => {
+              this.$app.$emit('animate::details')
+            }, 500)
+          },
           onComplete: () => {
             // split in reverse order of initialization
             this.splitWrap.revert()
             this.splitText.revert()
+
+            setTimeout(() => {
+              this.$app.$emit('animate::links')
+            }, 500)
           },
         },
         '+=0'
@@ -73,6 +76,10 @@ export default {
   font-size: 6.8vw;
   letter-spacing: -0.04em;
   padding-bottom: 0.5em;
+
+  &.is-hidden {
+    opacity: 0;
+  }
 
   @media (min-width: $vp-md) {
     line-height: 1;
