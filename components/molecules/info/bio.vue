@@ -70,7 +70,7 @@ export default {
 
 <style lang="scss" scoped>
 .para {
-  font-family: 'TimesNow-Light';
+  font-family: $text-serif;
   font-variation-settings: 'wght' 500;
   line-height: 1;
   font-size: 6.8vw;

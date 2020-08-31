@@ -1,6 +1,6 @@
 <template>
   <div class="logo">
-    <h1 ref="text" class="logo-text" @click="reanimate($event)">
+    <h1 ref="text" class="logo-text" @mousedown="reanimate($event)">
       <span class="char">E</span>
       <span class="char">G</span>
       <span class="char">S</span>
