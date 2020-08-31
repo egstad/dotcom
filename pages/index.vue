@@ -1,6 +1,7 @@
 <template>
   <main class="site">
     <section>
+      <Links />
       <header class="header">
         <Logo class="logo" />
         <Bio class="bio" />
@@ -42,6 +43,7 @@ import Logo from '@/components/molecules/info/logo'
 import Egg from '@/components/molecules/info/egg'
 import Bio from '@/components/molecules/info/bio'
 import Details from '@/components/molecules/info/details'
+import Links from '@/components/organisms/header'
 
 export default {
   components: {
@@ -49,6 +51,7 @@ export default {
     Egg,
     Bio,
     Details,
+    Links,
   },
 }
 </script>

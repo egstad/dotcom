@@ -1,12 +1,14 @@
 <template>
-  <h1 ref="text" class="logo" @click="reanimate($event)">
-    <span class="char">E</span>
-    <span class="char">G</span>
-    <span class="char">S</span>
-    <span class="char">T</span>
-    <span class="char">A</span>
-    <span class="char">D</span>
-  </h1>
+  <div class="logo">
+    <h1 ref="text" class="logo-text" @click="reanimate($event)">
+      <span class="char">E</span>
+      <span class="char">G</span>
+      <span class="char">S</span>
+      <span class="char">T</span>
+      <span class="char">A</span>
+      <span class="char">D</span>
+    </h1>
+  </div>
 </template>
 
 <script>
@@ -21,7 +23,7 @@ export default {
           duration: 0.8,
           opacity: 0,
           scaleX: '0%',
-          transformOrigin: '0% 50% -100%',
+          transformOrigin: '50% -100%',
           ease: 'Power2.easeOut',
           stagger: 0.15,
         },
@@ -69,19 +71,19 @@ export default {
       // which character is clicked? start there
       const startIndex = ev.target.dataset.index
       // number of animations
-      const shuffleNum = Math.round(Math.random() * 4)
+      const shuffleNum = Math.round(Math.random() * 3)
 
       switch (shuffleNum) {
-        case 1:
+        case 0:
           this.animWave(startIndex)
           break
-        case 2:
+        case 1:
           this.animSqueeze(startIndex)
           break
-        case 3:
+        case 2:
           this.animBold(startIndex)
           break
-        case 4:
+        case 3:
           this.animSqueeze(startIndex)
           break
         default:
@@ -90,12 +92,12 @@ export default {
     },
     animWave(startIndex) {
       const multiplier = (parseInt(startIndex) + 1) * 0.01
-      const yMin = 10
 
       this.timeline.to(this.chars, {
         duration: 0.2 + multiplier,
-        y: `-${multiplier * 50 * yMin}%`,
+        y: `-${50}%`,
         ease: 'Power3.inOut',
+
         stagger: {
           grid: [1, 6],
           yoyo: true,
@@ -133,9 +135,7 @@ export default {
       this.timeline.to(this.chars, {
         duration: 0.5,
         scaleY: 0.1,
-        transformOrigin: 'center center',
-        // scaleX: 0.1 * multiplier,
-        // scaleY: 0.3,
+        transformOrigin: 'left bottom',
         ease: 'expo.inOut',
         stagger: {
           grid: [1, 6],
@@ -143,7 +143,6 @@ export default {
           repeat: 1,
           from: startIndex,
           axis: 'x',
-
           each: multiplier + 0.05,
         },
       })
@@ -172,22 +171,46 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$kern-offset: 0.1vw;
+$char-height: 23vw;
+
 .logo {
-  color: rgba(var(--color-foreground), 0.2);
-  font-size: calc(28.7vw);
-  line-height: 0.45;
-  white-space: nowrap;
-  transform: translate3d(-0.09em, 0, 0);
-  font-variation-settings: 'wght' 400;
-  cursor: pointer;
+  &-text {
+    cursor: pointer;
+    position: relative;
+    height: $char-height;
+    line-height: 0.725;
+    left: 0;
+    width: 100%;
+    color: var(--color-accent);
+    font-size: calc(32vw - #{$space});
+    font-variation-settings: 'wght' 400;
+    white-space: nowrap;
+    text-indent: -0.095em;
+    letter-spacing: -0.01em;
+  }
 
   .char {
-    display: table-cell;
-    letter-spacing: normal;
-    letter-spacing: -0.08em;
+    position: absolute;
+    height: $char-height;
 
+    &[data-index='0'] {
+      left: 0;
+    }
+    &[data-index='1'] {
+      left: 15.5vw - $kern-offset;
+    }
+    &[data-index='2'] {
+      left: 34vw - $kern-offset;
+    }
     &[data-index='3'] {
-      letter-spacing: -0.15em;
+      left: 49vw - $kern-offset;
+    }
+    &[data-index='4'] {
+      left: 61vw - $kern-offset;
+    }
+    &[data-index='5'] {
+      left: 78.5vw - $kern-offset;
     }
   }
 }

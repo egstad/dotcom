@@ -68,12 +68,15 @@ export default {
 <style lang="scss" scoped>
 .para {
   font-family: 'TimesNow-Light';
-  // font-family: 'LLBradford-Light';
   font-variation-settings: 'wght' 500;
-  letter-spacing: -0.04em;
   line-height: 1;
-  font-size: 4.74vw;
-  padding-top: 0.25em;
+  font-size: 6.8vw;
+  letter-spacing: -0.04em;
   padding-bottom: 0.5em;
+
+  @media (min-width: $vp-md) {
+    line-height: 1;
+    font-size: 4.74vw;
+  }
 }
 </style>
