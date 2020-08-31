@@ -57,9 +57,7 @@ export default {
       this.mouse = new THREE.Vector2()
       this.target = new THREE.Vector2()
       this.scene = new THREE.Scene()
-      const texture = new THREE.TextureLoader().load(
-        'https://s3-us-west-2.amazonaws.com/s.cdpn.io/3410/_me.jpg'
-      )
+      const texture = new THREE.TextureLoader().load('images/egg/default.jpg')
       const radius = 100
       const widthSegments = 64
       const heightSegments = 64
