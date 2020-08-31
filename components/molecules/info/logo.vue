@@ -169,11 +169,15 @@ $char-height: 23vw;
     width: 100%;
     color: var(--color-accent);
     font-size: calc(31.5vw - #{$space});
-    font-variation-settings: 'wght' 440;
+    font-variation-settings: 'wght' 550;
     white-space: nowrap;
     text-indent: -0.095em;
     letter-spacing: -0.01em;
     user-select: none;
+
+    @media screen and (min-width: $vp-md) {
+      font-variation-settings: 'wght' 500;
+    }
   }
 
   .char {
@@ -185,13 +189,13 @@ $char-height: 23vw;
       left: 0;
     }
     &[data-index='1'] {
-      left: 15.5vw - $kern-offset;
+      left: 15.7vw - $kern-offset;
     }
     &[data-index='2'] {
-      left: 34vw - $kern-offset;
+      left: 34.2vw - $kern-offset;
     }
     &[data-index='3'] {
-      left: 49vw - $kern-offset;
+      left: 49.5vw - $kern-offset;
     }
     &[data-index='4'] {
       left: 61vw - $kern-offset;
