@@ -133,23 +133,29 @@ export default {
       })
     },
     animBold(startIndex) {
-      this.timeline.to(this.chars, {
-        duration: 0.2,
-        fontWeight: 800,
-        ease: 'expo.inOut',
-        stagger: {
-          grid: [1, 6],
-          yoyo: true,
-          repeat: 1,
-          from: startIndex,
-          axis: 'x',
-          each: 0.1,
-          onUpdate() {
-            this._targets[0].style.fontVariationSettings =
-              "'wght' " + this._targets[0].style.fontWeight
-          },
+      this.timeline.fromTo(
+        this.chars,
+        {
+          fontWeight: 550,
         },
-      })
+        {
+          duration: 0.2,
+          fontWeight: 800,
+          ease: 'expo.inOut',
+          stagger: {
+            grid: [1, 6],
+            yoyo: true,
+            repeat: 1,
+            from: startIndex,
+            axis: 'x',
+            each: 0.1,
+            onUpdate() {
+              this._targets[0].style.fontVariationSettings =
+                "'wght' " + this._targets[0].style.fontWeight
+            },
+          },
+        }
+      )
     },
   },
 }
@@ -161,29 +167,29 @@ $char-height: 23vw;
 
 .logo {
   &-text {
-    cursor: pointer;
+    cursor: pointer !important;
     position: relative;
     height: $char-height;
     line-height: 0.725;
     left: 0;
     width: 100%;
     color: var(--color-accent);
-    font-size: calc(31.5vw - #{$space});
-    font-variation-settings: 'wght' 550;
-    white-space: nowrap;
     text-indent: -0.095em;
-    letter-spacing: -0.01em;
     user-select: none;
-
-    @media screen and (min-width: $vp-md) {
-      font-variation-settings: 'wght' 500;
-    }
+    font-size: calc(31.5vw - #{$space});
   }
 
   .char {
     position: absolute;
     height: $char-height;
     opacity: 0;
+    font-variation-settings: 'wght' 550;
+    font-weight: 550;
+
+    @media screen and (min-width: $vp-md) {
+      font-variation-settings: 'wght' 500;
+      font-weight: 500;
+    }
 
     &[data-index='0'] {
       left: 0;
