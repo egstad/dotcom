@@ -173,6 +173,7 @@ $char-height: 23vw;
     white-space: nowrap;
     text-indent: -0.095em;
     letter-spacing: -0.01em;
+    user-select: none;
   }
 
   .char {
