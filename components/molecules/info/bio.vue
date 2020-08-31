@@ -75,7 +75,8 @@ export default {
   line-height: 1;
   font-size: 6.8vw;
   letter-spacing: -0.04em;
-  padding-bottom: 0.5em;
+  padding-top: 0.2em;
+  padding-bottom: 0.4em;
 
   &.is-hidden {
     opacity: 0;

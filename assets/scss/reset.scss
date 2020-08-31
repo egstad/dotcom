@@ -97,3 +97,9 @@ select {
     scroll-behavior: auto !important;
   }
 }
+
+// highlighted text
+::selection {
+  background: rgba(var(--color-foreground), 0.8);
+  color: var(--background);
+}

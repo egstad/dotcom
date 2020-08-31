@@ -5,7 +5,7 @@ export default {
    ** Headers of the page
    */
   head: {
-    title: 'Jordan Egstad — Graphic Designer and Developer',
+    title: 'Jordan Egstad — Graphic Designer and Web Developer',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -13,7 +13,7 @@ export default {
         hid: 'description',
         name: 'description',
         content:
-          'Jordan Egstad is a graphic designer and web developer who lives in Portland, Oregon and works at Instrument',
+          'Hello world, I’m Jordan Egstad. I’m a graphic designer and web developer creating expressive and enduring brand identities, websites, apps, typefaces, and more.',
       },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],

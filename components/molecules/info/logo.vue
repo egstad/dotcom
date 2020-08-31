@@ -156,7 +156,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$kern-offset: 0.1vw;
+$kern-offset: 0.5vw;
 $char-height: 23vw;
 
 .logo {
@@ -168,8 +168,8 @@ $char-height: 23vw;
     left: 0;
     width: 100%;
     color: var(--color-accent);
-    font-size: calc(32vw - #{$space});
-    font-variation-settings: 'wght' 400;
+    font-size: calc(31.5vw - #{$space});
+    font-variation-settings: 'wght' 440;
     white-space: nowrap;
     text-indent: -0.095em;
     letter-spacing: -0.01em;

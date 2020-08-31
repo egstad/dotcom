@@ -1,5 +1,10 @@
 <template>
-  <div ref="eggcarton" class="eggcarton" @mousedown="relocateEggball">
+  <div
+    ref="eggcarton"
+    class="eggcarton"
+    @mousedown="relocateEggball"
+    @touchstart="relocateEggball"
+  >
     <div class="eggball" ref="eggball">
       <canvas ref="canvas"></canvas>
     </div>

@@ -55,7 +55,7 @@
 }
 
 .button {
-  border: 1px solid var(--foreground);
+  border: 2px solid var(--foreground);
   font-variation-settings: 'wght' 700;
   text-transform: uppercase;
   display: inline-block;
@@ -68,10 +68,7 @@
   color: var(--foreground);
   line-height: 1;
 
-  @media screen and (min-width: $vp-sm) {
-    border-width: 2px;
-  }
-  @media screen and (min-width: $vp-md) {
+  @media screen and (min-width: $vp-lg) {
     border-width: 3px;
   }
 }
