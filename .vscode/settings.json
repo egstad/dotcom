@@ -1,0 +1,10 @@
+{
+  "vetur.validation.template": false,
+  "editor.formatOnSave": false,
+  "files.associations": {
+    "*.css": "vue-postcss"
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
+}

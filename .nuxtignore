@@ -1,0 +1,2 @@
+# ignore middleware files under foo folder except foo/bar.js
+pages/ignore/*.*
